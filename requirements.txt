@@ -1,7 +1,7 @@
 
 tensorflow-cpu==2.5.0
 opencv-contrib-python-headless
-keras==2.7.0
-streamlit==1.2.0
+keras
+streamlit
 numpy==1.19.2
-streamlit-webrtc==0.31.2
+streamlit-webrtc
