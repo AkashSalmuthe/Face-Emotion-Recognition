@@ -50,7 +50,7 @@ class VideoTransformer(VideoTransformerBase):
 def main():
     # Face Analysis Application #
     st.title("Real Time Face Emotion Detection Application")
-    activiteis = ["Home", "Webcam Face Detection", "About","Contact Us","Error and Solutions"]
+    activiteis = ["Home", "Webcam Face Detection", "About","Contact","Error and Solutions"]
     choice = st.sidebar.selectbox("Select Activity", activiteis)
     # st.sidebar.markdown(""" Developed by Akash Salmuthe""")
     # st.sidebar.markdown(""" LinkedIn profile Links""")
@@ -94,9 +94,9 @@ def main():
     elif choice == "Contact":
         st.header("Contact Details")
         st.write(""" LinkedIn profile Links""")
-        st.write(""">* [Akash Salmuthe] : (https://www.linkedin.com/in/akash-salmuthe-17a666214/)""")
-        st.write("""Email Ids""")
-        st.write(""">* Akash Salmuthe   : akashsalmuthe30@gmail.com)""")
+        st.write("""> Akash Salmuthe : (https://www.linkedin.com/in/akash-salmuthe-17a666214/)""")
+        st.write("""Email Id""")
+        st.write("""> Akash Salmuthe   : akashsalmuthe30@gmail.com)""")
 
 
     elif choice == "Error and Solutions":
