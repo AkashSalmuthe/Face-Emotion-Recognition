@@ -1,6 +1,6 @@
 
 tensorflow-cpu==2.5.0
-opencv-contrib-python-headless>=4.5.1.48
+opencv-contrib-python-headless
 keras==2.7.0
 streamlit==1.2.0
 numpy==1.19.2
