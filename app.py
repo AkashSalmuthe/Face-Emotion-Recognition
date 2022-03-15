@@ -84,7 +84,7 @@ def main():
 
         html_temp4 = """
                                     <div style="background-color:#98AFC7;padding:10px">
-                                    <h4 style="color:white;text-align:center;">Rahul Kumar Soni and Ali Asgar Lakdawala created this demo application using the Streamlit Framework, OpenCV, Tensorflow, and Keras libraries. </h4>
+                                    <h4 style="color:white;text-align:center;">Akash Salmuthe created this demo application using the Streamlit Framework, OpenCV, Tensorflow, and Keras libraries. </h4>
                                     <h4 style="color:white;text-align:center;">Thanks for Visiting</h4>
                                     </div>
                                     <br></br>
