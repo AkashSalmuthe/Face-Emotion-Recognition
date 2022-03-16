@@ -1,4 +1,4 @@
-
+keras
 tensorflow-cpu==2.6.0
 streamlit
 opencv-python-headless
