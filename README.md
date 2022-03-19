@@ -82,7 +82,7 @@ Due to size concern we use less size model(model.h5) which was stopped early nea
 
 <br>
 <p align="center">
-<img src="Disgust.png" width="500" height="300" >
+<img src="Disgust.png" width="500" height="400" >
 </p>
 
 <br>
