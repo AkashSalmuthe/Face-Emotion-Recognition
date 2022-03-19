@@ -14,7 +14,7 @@ The data comes from the past Kaggle competition “Challenges in Representation 
 <br>
 
 <p align="center">
-<img src="face.jpg" width="500" height="300" >
+<img src="Dataset Info.png" width="500" height="300" >
 </p>
 
 <br>
