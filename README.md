@@ -47,15 +47,11 @@ Basic CNN architecture details:
 * Output Layer - Output layer contains the label which is in the form of one-hot encoded
 
 <p align="center">
-<img src="pics/CNN2.PNG"  width="500" height="300" >
+<img src="cnn.jpg"  width="500" height="300" >
 </p>
 
 <br>
 Classic NNs are usually composed of several fully connected layers. This means that every node of one layer is connected to all the nodes of the next layer. Convolutional Neural Networks also have Convolutional layers that apply sliding functions to groups of pixels that are next to each other. There are two main parts to a CNN architecture- A convolution tool that separates and identifies the various features of the image for analysis in a process called as Feature Extraction A fully connected layer that utilizes the output from the convolution process and predicts the class of the image based on the features extracted in previous stages. This was the model structure. In the output layer there were 7 nodes.
-
-<p align="center">
-<img src="pics/CNN.jpg" width="500" height="300" >
-</p>
 
 <br>
 
@@ -66,6 +62,7 @@ Classic NNs are usually composed of several fully connected layers. This means t
 	Opencv
 	Streamlit
 	Streamlit-Webrtc
+	
 Front-end using Streamlit
 We have created front-end using Streamlit for webapp and used streamlit-webrtc which helped to deal with real-time video streams. Image captured from the webcam is sent to VideoTransformer function to detect the emotion. Then this model was deployed on heroku platform with the help of buildpack-apt which is necessary to deploy opencv model on heroku. But heroku platform only allows model size as 500 mb. And tensorflow 2.0 itself takes 420 mb so we replaced it with tensorflow-cpu. All the other packages used and their version can be found in requirements.txt Our final model was of 435 mb and it was successfully deployed but the live stream itself takes 250-300 mb while loading live-stream or opening the webcam. And hence the webcam was not loading or opening and our model was not giving expected output.
 Due to size concern we use less size model(model.h5) which was stopped early nearly at 14-15 epochs and gives us the accuracy of 60-65%. And the model is performing well.
