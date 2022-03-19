@@ -73,8 +73,8 @@ Due to size concern we use less size model(model.h5) which was stopped early nea
 
 <br>
 
-* HEROKU : 
-* STREAMLIT CLOUD : 
+* HEROKU : https://face-akash.herokuapp.com/
+* STREAMLIT CLOUD : https://share.streamlit.io/akashsalmuthe/face-emotion-recognition/main/app.py
 
 <br>
 
@@ -82,7 +82,7 @@ Due to size concern we use less size model(model.h5) which was stopped early nea
 
 <br>
 <p align="center">
-<img src="pics/Arko.png" width="500" height="300" >
+<img src="Disgust.png" width="500" height="300" >
 </p>
 
 <br>
