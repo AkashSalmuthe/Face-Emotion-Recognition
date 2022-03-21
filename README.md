@@ -33,7 +33,7 @@ The data comes from the past Kaggle competition “Challenges in Representation 
 # Emotion detection Recognition using deep learning(CNN MODEL)
 
 <br>
-We define our CNN with the following global architecture:
+CNN with the following global architecture:
 
 * 4 convolutional layers
 * 2 fully connected layers
@@ -41,7 +41,7 @@ We define our CNN with the following global architecture:
 Basic CNN architecture details:
 
 * Input layer - Input layer in CNN should contain image data
-* Convo layer - Convo layer is sometimes called feature extractor layer because features of the image are get extracted within this layer
+* convolutional layer - convolutional layer is sometimes called feature extractor layer because features of the image are get extracted within this layer
 * Pooling layer - Pooling is used to reduce the dimensionality of each features while retaining the most important information. It is used between two convolution layer
 * Fully CL - Fully connected layer involves weights, biases, and neurons. It connects neurons in one layer to neurons in another layer. It is used to classify images between different category by training and placed before the output layer
 * Output Layer - Output layer contains the label which is in the form of one-hot encoded
