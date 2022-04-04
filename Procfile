@@ -1,1 +1,1 @@
-web: sh setup.sh && streamlit run ayushi.py
+web: sh setup.sh && streamlit run akash.py
