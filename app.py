@@ -48,7 +48,7 @@ class Faceemotion(VideoProcessorBase):
             label_position = (x,y)
             b=cv2.putText(a,label,label_position,cv2.FONT_HERSHEY_SIMPLEX,1,(0,255,0),2)
                
-        #return b
+        return b
 
 
 def main():
