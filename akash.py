@@ -1,21 +1,27 @@
 #importing libraries
-import numpy as np
-import tensorflow as tf
-from tensorflow import keras
-from keras.preprocessing.image import img_to_array
-import streamlit as st
 import cv2
-from streamlit_webrtc import webrtc_streamer, VideoTransformerBase,RTCConfiguration
+import numpy as np
+from keras.preprocessing import image
+import warnings
+warnings.filterwarnings("ignore")
+from keras.preprocessing.image import load_img, img_to_array 
+from keras.models import  load_model
+import numpy as np
+import streamlit as st
+from streamlit_webrtc import webrtc_streamer, VideoTransformerBase, RTCConfiguration, WebRtcMode
 
-#page title
-st.set_page_config(page_title="Emotion Detection")
-#load model
-model = tf.keras.models.load_model("models//Akash_CNN_model.h5")
-#face detection classifier
+
+# Loading pre-trained parameters for the cascade classifier
 try:
-    face_haar_cascade = cv2.CascadeClassifier("haarcascade_frontalface_default.xml")
+    face_haar_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml')
+    # load model
+    model = load_model("models//Akash_CNN_model.h5")
+    emotion_labels = ['Angry','Disgust','Fear','Happy','Neutral', 'Sad', 'Surprise']  # Emotion that will be predicted
 except Exception:
     st.write("Error loading cascade classifiers")
+    
+RTC_CONFIGURATION = RTCConfiguration({"iceServers": [{"urls": ["stun:stun.l.google.com:19302"]}]})
+
 
 class VideoTransformer(VideoTransformerBase):
     def transform(self, frame):
@@ -36,7 +42,7 @@ class VideoTransformer(VideoTransformerBase):
             predictions = model.predict(image_pixels)
             max_index = np.argmax(predictions[0])
             #map predictions
-            emotion_detection = ('Angry.', 'Disgusted.', 'Fear!', " Happy.", ' Sad.', 'Surprised!!!', 'Neutral.')
+            emotion_detection = ('Angry', 'Disgusted', 'Fear', " Happy", ' Sad', 'Surprised', 'Neutral')
             emotion_prediction = emotion_detection[max_index]
             font = cv2.FONT_HERSHEY_SIMPLEX
             lable_color = (0, 255, 0)
@@ -44,47 +50,95 @@ class VideoTransformer(VideoTransformerBase):
         return img
 
 def main():
-    # Application
-    pages = ["Home","About"]
-    with st.sidebar:
-        st.title('Page Selection')
-        page_name = st.selectbox("Select Page:", pages)
-    st.title(page_name)
-
-    if page_name == 'Home':
-        home_html = """<body>
-                    <h4 style="font-size:30px">Real Time Emotion Detection</h4>
-                    <p>The application detects faces and predicts the face emotion using OpenCV and a customized CNN model trained on FER2013 dataset.</p>
-                    </body>"""
-        st.markdown(home_html,unsafe_allow_html=True)
-        st.write("Click on start to use a webcam and detect your Facial Emotion.")
-        webrtc_streamer(key="example", video_transformer_factory=VideoTransformer,media_stream_constraints={
-            "video": True,
-            "audio": False
-        },rtc_configuration=RTCConfiguration(
-    {"iceServers": [{"urls": ["stun:stun.l.google.com:19302"]}]}
-))
+    # Face Analysis Application #
+    st.title("Live Class Monitoring System")
+    activiteis = ["Introduction","Home", "Webcam Face Detection", "About"]
+    choice = st.sidebar.selectbox("Select Activity", activiteis)
+    st.sidebar.markdown(
+        """ Developed by Aayushi Sharma """)
+    if choice =="Introduction":
+        html_temp = """
+    <body style="background-color:red;">
+    <div style="background-color:teal ;padding:10px">
+    <h2 style="color:white;text-align:center;">Face Emotion Recognition WebApp</h2>
+    </div>
+    <br />
+    <div style="background-image: url('https://cdn.pixabay.com/photo/2020/06/13/17/50/milky-way-5295155_960_720.jpg');padding:150px;">
+    <h3 style="color:white;text-align:center;">The Indian education landscape has been undergoing rapid changes for the past 10 years owing to the advancement of web-based learning services, specifically, eLearning platforms.</h3>
+    <h4 style="color:white;text-align:center;">Digital classrooms are conducted via video telephony software program (ex-Zoom) where it’s not possible for medium scale class (25-50) to see all students and access the mood. Because of this drawback, students are not focusing on content due to lack of surveillance. While digital platforms have limitations in terms of physical surveillance but it comes with the power of data and machines which can work for you. It provides data in the form of video, audio, and texts which can be analyzed using deep learning algorithms. I have built a deep learning model which detects the real time emotions of students through a webcam so that teachers can understand if students are able to grasp the topic according to students' expressions or emotions</h4>
+    </div>
+    </body>
+        """
+        st.markdown(html_temp, unsafe_allow_html=True)
+      
+              
+    elif choice =="Home":
+        html_temp = """
+    <body style="background-color:red;">
+    <div style="background-color:teal ;padding:10px">
+    <h2 style="color:white;text-align:center;">Face Emotion Recognition WebApp</h2>
+    </div>
     
-    elif page_name == "About":
-        about_html = """<body>
-                       <h4 style="font-size:30px">Real time Face Emotion Detection Application</h4>
-                                    <body>"""
-        st.markdown(about_html, unsafe_allow_html=True)
-        st.write("The project is part of the curriculum of AlmaBetter's Full Stack Data Science Program.")
-        statement_html = '''<body>
-        <h4 style="font-size:20px">Project Statement</h4>
-        <p>One of many challenges is how to ensure quality learning for students. Digital platforms might overpower physical classrooms in terms of content quality but when it comes to understanding whether students are able to grasp the 
-        content in a live class scenario is yet an open-end challenge. While digital platforms have limitations in terms of physical surveillance but it comes with the power of data and machines which can work for you. It provides data in the form of video, audio, and texts which can be analysed using deep learning algorithms. Deep learning backed system not only solves the surveillance issue, but it also removes the human bias from the system, and all information is no longer in the teacher’s 
-        brain rather translated in numbers that can be analysed and tracked. The solution to this problem is by recognizing facial emotions. This is a live face emotion detection system. The model is able to real-time identify the emotions of students in a live class.
-        The demo application is developed by Vithika Karan using OpenCV-Python, CNN and Streamlit Frameworks.<p>
-         <body>'''
-        st.markdown(statement_html,True)
-        st.write("Contact Details:")
-        st.write("Vithika Karan")
-        st.write("LinkedIn Profile: https://www.linkedin.com/in/vithika-karan/")
+    </body>
+        """
+        st.markdown(html_temp, unsafe_allow_html=True)
+        st.title(":angry::dizzy_face::fearful::smile::pensive::open_mouth::neutral_face:")
+        st.write("**Instructions while using the APP**")
+        st.write('''
+                  1. Click on the Start button to start.
+                 
+                  2. WebCam window will open  automatically. 
+		  
+		          3. It will automatically  predict emotions at that instant.
+                  
+                  4. Make sure that camera shouldn't be used by any other app.
+                  
+                  5. Click on  Stop  to end.''')
+    elif choice == "Webcam Face Detection":
+        html_temp = """
+    <body style="background-color:red;">
+    <div style="background-color:teal ;padding:10px">
+    <h2 style="color:white;text-align:center;">Face Emotion Recognition WebApp</h2>
+    </div>
+    </body>
+        """
+        st.markdown(html_temp, unsafe_allow_html=True)
+        st.header("Webcam Live Feed")
+        st.write("Click on start to use webcam and detect your face emotion")
+        webrtc_streamer(key="example", mode=WebRtcMode.SENDRECV, rtc_configuration=RTC_CONFIGURATION,
+                        video_processor_factory=VideoTransformer)
+
+    elif choice == "About":
+        html_temp = """
+    <body style="background-color:red;">
+    <div style="background-color:teal ;padding:10px">
+    <h2 style="color:white;text-align:center;">Face Emotion Recognition WebApp</h2>
+    </div>
+    </body>
+        """
+        st.markdown(html_temp, unsafe_allow_html=True)
+        
+        st.subheader("About this app")
+        html_temp_about1= """<div style="background-color:#6D7B8D;padding:10px">
+                                    <h4 style="color:white;text-align:center;">
+                                    Real time face emotion recognition application using OpenCV, Custom Trained CNN model and Streamlit.</h4>
+                                    </div>
+                                    </br>"""
+        st.markdown(html_temp_about1, unsafe_allow_html=True)
+
+        html_temp4 = """
+                             		<div style="background-color:#98AFC7;padding:10px">
+                             		<h4 style="color:white;text-align:center;">This Application is developed by Aayushi Sharma using Streamlit Framework, Opencv, Tensorflow and Keras library for demonstration purpose.</h4>
+                             		<h4 style="color:white;text-align:center;">Thanks for Visiting</h4>
+                             		</div>
+                             		<br></br>
+                             		<br></br>"""
+
+        st.markdown(html_temp4, unsafe_allow_html=True)
 
     else:
         pass
+
 
 if __name__ == "__main__":
     main()
