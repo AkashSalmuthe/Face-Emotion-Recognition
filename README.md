@@ -25,7 +25,7 @@ The data comes from the past Kaggle competition “Challenges in Representation 
 <br>
 
 <p align="center">
-<img src="Dataset Info.png" width="500" height="300" >
+<img src="Images/Dataset Info.png" width="500" height="300" >
 </p>
 
 <br>
@@ -47,7 +47,7 @@ Basic CNN architecture details:
 * Output Layer - Output layer contains the label which is in the form of one-hot encoded
 
 <p align="center">
-<img src="cnn.jpg"  width="500" height="300" >
+<img src="Images/cnn.jpg"  width="500" height="300" >
 </p>
 
 <br>
@@ -82,7 +82,7 @@ Due to size concern we use less size model which was stopped early nearly at 23-
 
 <br>
 <p align="center">
-<img src="Disgust.png" width="500" height="400" >
+<img src="Images/Disgust.png" width="500" height="400" >
 </p>
 
 <br>
