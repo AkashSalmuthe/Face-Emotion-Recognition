@@ -1,4 +1,4 @@
-python==3.8 # added for st
+python==3.8.8
 numpy
 opencv-python-headless
 tensorflow-cpu==2.6.2
