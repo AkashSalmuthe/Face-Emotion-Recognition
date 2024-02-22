@@ -1,5 +1,4 @@
-python
-numpy
+numpy==1.19
 opencv-python-headless
 tensorflow-cpu==2.6.2
 streamlit-webrtc
